@@ -1,1 +1,12 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Output Example</title>
+</head>
+<body>
+    <h1>Choose an Output for "Hello, World!"</h1>
+    <button onclick="console.log('Hello, World!')">1. Console</button>
+    <button onclick="alert('Hello, World!')">2. Alert</button>
+    <button onclick="document.write('Hello, World!')">3. Document</button>
+</body>
+</html>
