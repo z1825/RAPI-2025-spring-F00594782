@@ -1,0 +1,28 @@
+const express = require("express");
+const { MongoClient } = require("mongodb");
+
+const app = express();
+const port = 3000;
+const mongoURI = "mongodb://localhost:27017";
+const dbName = "sam";
+
+app.use(express.json());
+
+let db;
+MongoClient.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(client => {
+        db = client.db(dbName);
+        console.log("Connected to MongoDB");
+    })
+    .catch(err => console.error("Failed to connect", err));
+
+const footballRoutes = require("./routes/football");
+app.use("/api/football", footballRoutes);
+
+app.get("/", (req, res) => {
+    res.send("Football API is running.");
+});
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
